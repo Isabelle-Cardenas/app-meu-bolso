@@ -12,7 +12,6 @@ export default function Login() {
     return (
         <KeyboardAvoidingView style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-            <View>
                 <Text style={styles.title}> Meu bolso </Text>
                 <Text style={styles.subtitle}>Controle suas finanças</Text>
                 <AppInput label="E-mail"
@@ -33,7 +32,6 @@ export default function Login() {
                 <TouchableOpacity onPress={()=>router.push('/register')}>
                 <Text style={styles.link}>Criar nova conta</Text>
                 </TouchableOpacity>
-            </View>
         </KeyboardAvoidingView>
     );
 }
