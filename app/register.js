@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, Alert } from "react-native";
 import { router } from expo - router;
 import AppInput from '../src/components/AppInput';
 import AppButton from '../src/components/AppButton';
@@ -9,6 +9,16 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
     const [loading, setLoading] = useState(false);
+
+    //trim é uma função ou método usado para remover espaços em branco
+    async function handleRegister() {
+        if (!email.trim()||!password||!confirm)
+            return Alert.alert('Atenção', 'Preencha todos os campos');
+        if(password.length<6)
+            return Alert.alert('Atenção', 'A senha deve ter no mínimo 6 caracteres');
+        if (password!==confirm)
+            return Alert.alert('Atenção', 'As senhas não conferem');
+    }
 
     return (
         <KeyboardAvoidingView style={styles.container}
@@ -28,13 +38,10 @@ export default function Register() {
             value={confirm} onChangeText={setConfirm}
             />
             <AppButton
-                title="Criar conta"
+                title="Criar conta" onPress={{handleRegister}}
             loading={loading}
             />
-            <TouchableOpacity
-                onPress={() => router.push('/register')}>
-                <Text style={styles.link}>Criar nova conta</Text>
-            </TouchableOpacity>
+           
         </KeyboardAvoidingView>
     );
 }
