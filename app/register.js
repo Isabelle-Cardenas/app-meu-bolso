@@ -58,7 +58,7 @@ export default function Register() {
 
         </KeyboardAvoidingView>
     );
-}
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
