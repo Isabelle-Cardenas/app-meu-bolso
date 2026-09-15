@@ -5,7 +5,7 @@ import AppInput from '../src/components/AppInput';
 import AppButton from '../src/components/AppButton';
 import { COLORS } from "@/src/constants/theme";
 import { signUp } from "../src/services/authService";
-import {router} from 'expo-router';
+import {router} from "expo-router";
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
