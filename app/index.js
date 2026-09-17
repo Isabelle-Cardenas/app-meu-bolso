@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
-//import { router } from 'expo-router';
+import { router } from 'expo-router';
 import AppInput from '../src/components/AppInput';
 import AppButton from '../src/components/AppButton';
-import { COLORS } from "@/src/constants/theme";
+import { COLORS } from "../src/constants/theme.js";
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

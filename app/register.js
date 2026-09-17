@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, Alert } from "react-native";
-import { router } from "expo-router";
 import AppInput from '../src/components/AppInput';
 import AppButton from '../src/components/AppButton';
-import { COLORS } from "@/src/constants/theme";
-import { signUp } from "../src/services/authService";
+import { COLORS } from "../src/constants/theme.js";
+import { signUp } from '../src/services/authService';
+import { router } from 'expo-router';
+
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
     const [loading, setLoading] = useState(false);
 
-    //trim é uma função ou método usado para remover espaços em branco
+    //trim é uma função ou método usado para remover espaços em branco 
     async function handleRegister() {
         if (!email.trim() || !password || !confirm)
             return Alert.alert('Atenção', 'Preencha todos os campos');
@@ -25,13 +26,13 @@ export default function Register() {
             if (error) {
                 Alert.alert('Erro', error.message);
                 console.log('Erro', error.message); return;}
-                if (data.session) router.replace('/');
+                if (data.session) router.replace();
                 else {
                     Alert.alert('Cadastro realizado', 'Confirme seu e-mail, se necessário.'); router.replace('/');
                 }
             } finally {setLoading(false);}
         }
-    }
+
 
     return (
         <KeyboardAvoidingView style={styles.container}
@@ -51,13 +52,17 @@ export default function Register() {
                 value={confirm} onChangeText={setConfirm}
             />
             <AppButton
-                title="Criar conta" onPress={handleRegister}
+                title="Criar conta"
                 loading={loading}
+                onPress={handleRegister} 
             />
-
+            <TouchableOpacity
+                onPress={() => router.push('/')}>
+                <Text style={styles.link}>Voltar para tela de login</Text>
+            </TouchableOpacity>
         </KeyboardAvoidingView>
     );
-
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -70,5 +75,17 @@ const styles = StyleSheet.create({
         fontWeight: '900',
         color: '#2f3640',
         marginBottom: 28
+    },
+    subtitle:{
+        color: '#7f8c8d',
+        textAlign: 'center',
+        marginTop: 8,
+        marginBottom: 32
+    },
+    link:{
+        color: '#008f22', 
+        textAlign: 'center',
+        marginTop: 20,
+        fontWeight: '700'
     }
 });
