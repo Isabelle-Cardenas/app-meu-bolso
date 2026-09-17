@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, Alert } from "react-native";
-import { router } from expo - router;
+import { router } from "expo-router";
 import AppInput from '../src/components/AppInput';
 import AppButton from '../src/components/AppButton';
 import { COLORS } from "@/src/constants/theme";
 import { signUp } from "../src/services/authService";
-import {router} from "expo-router";
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,7 +25,7 @@ export default function Register() {
             if (error) {
                 Alert.alert('Erro', error.message);
                 console.log('Erro', error.message); return;}
-                if (data.session) router.replace();
+                if (data.session) router.replace('/');
                 else {
                     Alert.alert('Cadastro realizado', 'Confirme seu e-mail, se necessário.'); router.replace('/');
                 }
@@ -52,7 +51,7 @@ export default function Register() {
                 value={confirm} onChangeText={setConfirm}
             />
             <AppButton
-                title="Criar conta" onPress={{ handleRegister }}
+                title="Criar conta" onPress={handleRegister}
                 loading={loading}
             />
 
