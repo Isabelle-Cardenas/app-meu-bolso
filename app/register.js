@@ -26,9 +26,10 @@ export default function Register() {
             if (error) {
                 Alert.alert('Erro', error.message);
                 console.log('Erro', error.message); return;}
-                if (data.session) router.replace();
+                if (data.session) router.replace('/');
                 else {
                     Alert.alert('Cadastro realizado', 'Confirme seu e-mail, se necessário.'); router.replace('/');
+                    console.log('Cadastro realizado com sucesso' ); router.replace('/');
                 }
             } finally {setLoading(false);}
         }
